@@ -1,0 +1,134 @@
+<html>
+    <head></head>
+
+    <body>
+        <img class="winnie"src="http://web.idv.nkmu.edu.tw/~981131138/888.gif">
+        <img class="dale"src="https://2.bp.blogspot.com/-CpwAqO7IX3o/WegGkdNPHoI/AAAAAAAJ7-Q/yueGIi3HVdA9Nl82zl66QF1jXM5geNXXQCLcBGAs/s1600/AS003221_11.gif">
+        <img class="snoopy"src="https://3.bp.blogspot.com/-3a63WvmBKIo/WNxdFYfHjPI/AAAAAAAGpGI/bz54hqzSO8oWpwMnvzQkn4j4Ig8KYwiFwCLcB/s1600/AS002467_23.gif">
+        <img class="mic"src="http://line.banner.tw/line/animation/7359/main.png">
+        <img class="sumi"src="http://line.banner.tw/line//animation/3384/2250396.png">
+        <img class="stitch"src="https://i.pinimg.com/originals/04/e4/85/04e485b02cd73b733e3d4f422ff8e8b4.gif">
+        <img class="melody"src="https://1.bp.blogspot.com/-aMZIgqPdB9Y/WkGpeXeLt9I/AAAAAAAKk4g/onF8qeDUvnEvwJhm5zcZkDPCMg24FuiGgCLcBGAs/s1600/AS003473_03.gif">
+        <img class="cinna"src="https://i.pinimg.com/originals/90/31/1a/90311a019b1bb7592651ea297b442db7.gif">
+        <div class="clocks">
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
+    </body>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.moveto(o,o);
+        ctx.lineTo(300,150);
+        ctx.stroke();
+    </script>
+    
+    <script>
+        var canvas = document.getElementById('canvas')
+        var ctx = canvas.getContext('2d');
+        var clockRadius = 250;
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var hour = hours + minutes / 60;
+        var minute = minutes + seconds / 60;
+        //下面的算式為判斷式例如if else
+       //問號之前為判斷內容
+       //冒號的左邊為 true 也就是成立
+       //冒號的右邊為 false 也就是不成立
+        hours = hours > 12 ? hours - 12 : hours;
+        
+        
+        function clear(){
+            ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height);
+        }
+        function drawScene(){
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.font = '36px Arial';
+            ctx.fillStyle = '#000';
+            ctx.textAligh = 'center';
+            ctx.textBaseline = 'middle';
+            for (var n = 1; n <= 12; n++){
+                var theta = (n - 3) * (Math.PI * 2) /12
+                var x = clockRadius * 0.8 * Math.cos(theta)
+                var y = clockRadius * 0.8 * Math.sin(theta)
+                ctx.fillText(n, x, y);
+            }
+            var theta = (hour - 3) * 2 * Math.PI / 12;
+            ctx.rotate(theta);
+            ctx.beginPath();
+            ctx.moveTo(-15, -5);
+            ctx.lineTo(-15, 5);
+            ctx.lineTo(clockRadius * 0.5, 1);
+            ctx.lineTo(clockRadius * 0.5, -1);
+            ctx.fill();
+            ctx.restore();
+            
+
+            
+        }
+        setInterval(drawScene,1000);
+    </script>
+
+    <style type="text/css">
+        .clocks{
+            height:500px;
+            width:500px;
+            margin:25px auto;
+            position: relative;
+        }
+    </style>
+    <style>
+        .winnie{
+            position:fixed;
+            height:100px;
+            left:510px;
+        }
+        .dale{
+            position:fixed;
+            height:80px;
+            left:615px;
+            top:20px;
+
+        }
+        .snoopy{
+            position: fixed;
+            height:300px;
+            left:490px;
+            top:120px;
+
+        }
+        .mic{
+            position:fixed;
+            height:100px;
+            left:430px;
+            top:100px;
+             }
+             .sumi{
+                 position: fixed;
+                 height:100px;
+                 left:380px;
+                 top:210px;
+             }
+             .stitch{
+                 position: fixed;
+                 height:100px;
+                 left:410px;
+                 top:295px;
+             }
+             .melody{
+                 position: fixed;
+                 height:100px;
+                 left:490px;
+                 top:405px;
+             }
+             .cinna{
+                 position: fixed;
+                 height:100px;
+                 left:585px;
+                 top:415px;
+             }
+    </style>
+</html>
